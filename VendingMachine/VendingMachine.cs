@@ -27,10 +27,10 @@ namespace VendingMachine
 
             products = new List<Product>()
             {
-                new Snacks("Potato chips", 1.5),
-                new Snacks("Cheese Doodles", 1.25),
+                new Snacks("Potato Chips", 1.5),
+                new Snacks("Cheese Curls", 1.25),
                 new Snacks("Peanuts", 1),
-                new Candy("Chocolate bar", 2),
+                new Candy("Chocolate Bar", 2),
                 new Candy("Cookie", 1),
                 new Soda("Cola", 1.5),
                 new Soda("Lemon/Lime Soda", 1.5),
