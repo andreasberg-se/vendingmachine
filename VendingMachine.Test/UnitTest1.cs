@@ -41,36 +41,37 @@ namespace VendingMachine.Test
             vendingMachine.Balance = 10;
             double expectedBalance = 8.5;
 
-            vendingMachine.Purchase(0);
+            vendingMachine.Purchase(1);
 
             Assert.Equal(expectedBalance, vendingMachine.Balance);
         }
 
         [Theory]
         [InlineData(-1)]
+        [InlineData(0)]
         [InlineData(20)]
-        public void Purchase_Index_Out_Of_Range_Test(int productIndex)
+        public void Purchase_Number_Out_Of_Range_Test(int productNumber)
         {
             VendingMachine vendingMachine = new VendingMachine();
             
             var expectedResult = Assert.Throws<IndexOutOfRangeException>(() =>
-                vendingMachine.Purchase(productIndex));
+                vendingMachine.Purchase(productNumber));
 
-            Assert.Equal(VendingMachine.InvalidProductIndex, expectedResult.Message);
+            Assert.Equal(VendingMachine.InvalidProductNumber, expectedResult.Message);
         }
 
         [Theory]
-        [InlineData(3.0, 9)]
-        [InlineData(1.0, 8)]
-        [InlineData(0.0, 0)]
-        [InlineData(1.24, 1)]
-        public void Purchase_Not_Enough_Money_Test(double balance, int productIndex)
+        [InlineData(3.0, 10)]
+        [InlineData(1.0, 9)]
+        [InlineData(0.0, 1)]
+        [InlineData(1.24, 2)]
+        public void Purchase_Not_Enough_Money_Test(double balance, int productNumber)
         {
             VendingMachine vendingMachine = new VendingMachine();
             vendingMachine.Balance = balance;
 
             var expectedResult = Assert.Throws<Exception>(() =>
-                vendingMachine.Purchase(productIndex));
+                vendingMachine.Purchase(productNumber));
 
             Assert.Equal(VendingMachine.NotEnoughMoney, expectedResult.Message);
         }
