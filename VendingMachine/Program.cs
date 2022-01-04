@@ -74,15 +74,16 @@ namespace VendingMachine
 
                     case "p":
                         // Purchase
-                        Console.Write("Enter product index: ");
-                        int productIndex;
-                        if (int.TryParse(ReadLine().Trim(), out productIndex))
+                        Console.Write($"Enter product number (1-{vendingMachine.products.Count}): ");
+                        int productNumber;
+                        if (int.TryParse(ReadLine().Trim(), out productNumber))
                         {
                             WriteLine();
                             try
                             {
-                                vendingMachine.Purchase(productIndex-1);
-                                Write(vendingMachine.products[productIndex-1].Use());
+                                vendingMachine.Purchase(productNumber);
+                                int productIndex = productNumber-1;
+                                Write(vendingMachine.products[productIndex].Use());
                                 ReadKey();
                             }
                             catch (IndexOutOfRangeException exception)

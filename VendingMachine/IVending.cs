@@ -5,7 +5,7 @@ namespace VendingMachine
 {
     public interface IVending
     {
-        void Purchase(int productIndex);
+        void Purchase(int productNumber);
         List<string> ShowAll();
         void InsertMoney(double amount);
         double EndTransaction();

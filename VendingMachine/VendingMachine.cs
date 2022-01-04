@@ -7,7 +7,7 @@ namespace VendingMachine
     public class VendingMachine : IVending
     {
         // Constants
-        public const string InvalidProductIndex = "Invalid product index!";
+        public const string InvalidProductNumber = "Invalid product number!";
         public const string NotEnoughMoney = "Not enough money to purchase this product!";
         public const string InvalidDemonination = "Invalid demonination!";
 
@@ -41,12 +41,13 @@ namespace VendingMachine
         }
 
         // Purchase product.
-        public void Purchase(int productIndex)
+        public void Purchase(int productNumber)
         {
-            if ((productIndex < 0) || (productIndex >= products.Count))
+            if ((productNumber < 1) || (productNumber > products.Count))
             {
-                throw new IndexOutOfRangeException(InvalidProductIndex);
+                throw new IndexOutOfRangeException(InvalidProductNumber);
             }
+            int productIndex = productNumber-1;
             if (Balance < products[productIndex].Price)
             {
                 throw new Exception(NotEnoughMoney);
